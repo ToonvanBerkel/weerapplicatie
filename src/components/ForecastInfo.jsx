@@ -5,10 +5,16 @@ const ForecastInfo = ({ forecast }) => {
     return <p>No forecast data available.</p>;
   }
 
+  const formattedDate = new Date(forecast.dt_txt).toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  });
+
   return (
     <div className="forecast-info bg-blue-100 p-4 rounded-lg shadow-md mb-4">
       <h2 className="text-xl font-bold mb-2">
-        {new Date(forecast.dt_txt).toLocaleDateString()} - {forecast.weather[0].description}
+        {formattedDate} - {forecast.weather[0].description}
         <img 
           src={`http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`} 
           alt="weather icon" 
